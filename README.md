@@ -1,0 +1,2 @@
+# WCMCR
+WordCamp Manchester
