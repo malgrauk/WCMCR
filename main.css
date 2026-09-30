@@ -1,0 +1,2032 @@
+/* Schedule fixes - Steve */
+/* Title */
+.wp-block-wordcamp-schedule .wordcamp-schedule__date {
+	color: #0a0a0a;
+	font-size: 1.75rem;
+}
+
+/* Time column */
+.wp-block-wordcamp-schedule .wordcamp-schedule__time-slot-header {
+	color: #0a0a0a;
+	font-size: 1rem;
+}
+
+/* Session titles */
+.wp-block-wordcamp-schedule .wordcamp-schedule__session-title,
+.wp-block-wordcamp-schedule .wordcamp-schedule__session-title a {
+	color: #0a0a0a;
+	font-size: 1.15rem;
+	line-height: 1.3;
+	text-decoration: none;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule__session-title a:hover,
+.wp-block-wordcamp-schedule .wordcamp-schedule__session-title a:focus {
+	color: #ee1841;
+}
+
+/* Time range */
+.wp-block-wordcamp-schedule .wordcamp-schedule__session-time {
+	font-size: 1rem;
+}
+
+.wp-block-wordcamp-schedule h2,
+.wp-block-wordcamp-schedule h3,
+.wp-block-wordcamp-schedule a:not(:hover) {
+	color: #0a0a0a;
+}
+
+/* CampTix tickets table: full width */
+.tix_tickets_table,
+.tix-tickets-list {
+	width: 100%;
+	max-width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.tix_tickets_table th,
+.tix_tickets_table td {
+	text-align: left;
+	vertical-align: middle;
+	padding: .75rem 1rem;
+}
+
+/* Column widths – description takes the slack */
+.tix_tickets_table .tix-column-description {
+	width: auto;
+}
+
+.tix_tickets_table .tix-column-price {
+	width: 18%;
+}
+
+.tix_tickets_table .tix-column-remaining {
+	width: 18%;
+}
+
+.tix_tickets_table .tix-column-quantity {
+	width: 16%;
+}
+
+/* Right-align the numbers, keep the dropdown tidy */
+.tix_tickets_table .tix-column-price,
+.tix_tickets_table .tix-column-remaining {
+	text-align: right;
+}
+
+.tix_tickets_table .tix-column-quantity select {
+	width: 100%;
+	max-width: 6rem;
+}
+
+/* ==============================================
+   WordCamp Manchester – Attendees "Player Select"
+   ============================================== */
+/* Grid */
+#tix-attendees ul.tix-attendee-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+	gap: 40px 36px;
+	margin: 0;
+	padding: 8px 8px 12px 0;
+	list-style: none;
+	counter-reset: player;
+}
+
+/* Card (height: auto overrides CampTix's fixed 80px) */
+#tix-attendees ul.tix-attendee-list > li {
+	float: none;
+	width: auto;
+	height: auto;
+	margin: 0;
+	padding: 48px 22px 24px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	background: #ffffff;
+	color: #0a0a0a;
+	border: 4px solid #0a0a0a;
+	box-shadow: 6px 6px 0 #0a0a0a;
+	counter-increment: player;
+	transition: transform .15s steps(3), box-shadow .15s steps(3);
+}
+
+/* Stop anything inside the card being squashed */
+#tix-attendees ul.tix-attendee-list > li > * {
+	flex-shrink: 0;
+}
+
+/* P01, P02… badge */
+#tix-attendees ul.tix-attendee-list > li::before {
+	content: "P" counter(player, decimal-leading-zero);
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	padding: 4px 10px;
+	background: #0a0a0a;
+	color: #ffe86b;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .8rem;
+	line-height: 1.2;
+	letter-spacing: 1px;
+}
+
+/* Lives */
+#tix-attendees ul.tix-attendee-list > li::after {
+	content: "♥♥♥";
+	position: absolute;
+	top: 6px;
+	right: 10px;
+	color: #ee1841;
+	font-size: .9rem;
+	letter-spacing: 2px;
+	line-height: 1;
+}
+
+/* Selected player */
+#tix-attendees ul.tix-attendee-list > li:hover,
+#tix-attendees ul.tix-attendee-list > li:focus-within {
+	transform: translate(-3px, -3px);
+	box-shadow: 9px 9px 0 #ee1841;
+}
+
+/* Avatar – generic image shows through for anyone without a Gravatar
+   (only when Default Avatar is set to Blank) */
+#tix-attendees ul.tix-attendee-list .avatar {
+	float: none;
+	display: block;
+	width: 120px;
+	height: 120px;
+	margin: 0 auto 20px;
+	padding: 0;
+	border: 4px solid #0a0a0a;
+	border-radius: 0;
+	background: #ffe86b url('https://manchester.wordcamp.org/2026/files/2026/09/bee.png') center / 60% no-repeat;
+	box-shadow: 4px 4px 0 #faaa39;
+}
+
+/* Remove CampTix's 70px indent on names and links */
+#tix-attendees ul.tix-attendee-list .tix-field {
+	margin-left: 0;
+}
+
+/* Name – fixed two-line band so all names line up */
+#tix-attendees ul.tix-attendee-list .tix-attendee-name {
+	min-height: 2.6em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0 0 16px;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: 1.05rem;
+	line-height: 1.3;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	color: #0a0a0a;
+	overflow-wrap: anywhere;
+}
+
+/* Link buttons */
+#tix-attendees ul.tix-attendee-list a.tix-attendee-url {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	margin-top: 10px;
+	padding: 7px 10px;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.2rem;
+	line-height: 1.1;
+	text-align: left;
+	text-decoration: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: 2px solid #0a0a0a;
+	box-shadow: 3px 3px 0 #0a0a0a;
+	transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+
+/* Push the buttons to the bottom of every card */
+#tix-attendees ul.tix-attendee-list > li > a.tix-attendee-url:first-of-type {
+	margin-top: auto;
+}
+
+#tix-attendees ul.tix-attendee-list a.tix-org-profile-url {
+	background: #277b30;
+	color: #ffffff;
+}
+
+#tix-attendees ul.tix-attendee-list a.tix-website {
+	background: #faaa39;
+	color: #0a0a0a;
+}
+
+#tix-attendees ul.tix-attendee-list a.tix-org-profile-url::before {
+	content: "▶ W.ORG ";
+}
+
+#tix-attendees ul.tix-attendee-list a.tix-website::before {
+	content: "▶ WEB ";
+}
+
+#tix-attendees ul.tix-attendee-list a.tix-attendee-url::before {
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .7rem;
+	margin-right: 4px;
+}
+
+#tix-attendees ul.tix-attendee-list a.tix-attendee-url:hover,
+#tix-attendees ul.tix-attendee-list a.tix-attendee-url:focus-visible {
+	background: #ee1841;
+	color: #ffffff;
+	transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 #0a0a0a;
+}
+
+#tix-attendees ul.tix-attendee-list a.tix-attendee-url:focus-visible {
+	outline: 3px solid #0a0a0a;
+	outline-offset: 2px;
+}
+
+/* Tidy up the CampTix clearfix */
+#tix-attendees + br.tix-clear {
+	display: none;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	#tix-attendees ul.tix-attendee-list > li,
+															#tix-attendees ul.tix-attendee-list a.tix-attendee-url {
+		transition: none;
+	}
+	
+	#tix-attendees ul.tix-attendee-list > li:hover,
+															#tix-attendees ul.tix-attendee-list > li:focus-within,
+															#tix-attendees ul.tix-attendee-list a.tix-attendee-url:hover {
+		transform: none;
+	}
+}
+
+/* ==============================================
+   Microsponsors – "Boss level" cards
+   (shortcode sits in a Group with class "microsponsors")
+   ============================================== */
+.microsponsors #tix-attendees ul.tix-attendee-list {
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+	gap: 44px 40px;
+}
+
+/* Card: avatar left, details right */
+.microsponsors #tix-attendees ul.tix-attendee-list > li {
+	display: grid;
+	grid-template-columns: 160px 1fr;
+	column-gap: 28px;
+	align-content: center;
+	align-items: center;
+	text-align: left;
+	padding: 52px 28px 28px;
+	background: #ffe86b;
+	border-width: 5px;
+	box-shadow: 10px 10px 0 #0a0a0a;
+}
+
+/* MicroSponsor badge instead of P01 */
+.microsponsors #tix-attendees ul.tix-attendee-list > li::before {
+	content: "★ MicroSponsor";
+	top: -5px;
+	left: -5px;
+	padding: 6px 14px;
+	background: #ee1841;
+	color: #ffffff;
+	font-size: .85rem;
+}
+
+/* Extra lives for paying players */
+.microsponsors #tix-attendees ul.tix-attendee-list > li::after {
+	content: "1UP ♥♥♥♥♥";
+	top: 10px;
+	right: 14px;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .8rem;
+}
+
+.microsponsors #tix-attendees ul.tix-attendee-list > li:hover,
+.microsponsors #tix-attendees ul.tix-attendee-list > li:focus-within {
+	transform: translate(-4px, -4px);
+	box-shadow: 14px 14px 0 #ee1841;
+}
+
+/* Bigger avatar in the left column */
+.microsponsors #tix-attendees ul.tix-attendee-list .avatar {
+	grid-column: 1;
+	grid-row: 1 / span 3;
+	align-self: center;
+	width: 160px;
+	height: 160px;
+	margin: 0;
+	border-width: 5px;
+	background-color: #ffffff;
+	box-shadow: 6px 6px 0 #ee1841;
+}
+
+/* Name and links in the right column */
+.microsponsors #tix-attendees ul.tix-attendee-list > li > :not(.avatar) {
+	grid-column: 2;
+}
+
+.microsponsors #tix-attendees ul.tix-attendee-list .tix-attendee-name {
+	min-height: 0;
+	justify-content: flex-start;
+	margin: 0 0 6px;
+	font-size: 1.35rem;
+	line-height: 1.2;
+}
+
+.microsponsors #tix-attendees ul.tix-attendee-list a.tix-attendee-url,
+.microsponsors #tix-attendees ul.tix-attendee-list > li > a.tix-attendee-url:first-of-type {
+	margin-top: 10px;
+	font-size: 1.3rem;
+}
+
+/* Phones: stack it back up */
+@media (max-width: 600px) {
+	.microsponsors #tix-attendees ul.tix-attendee-list > li {
+		grid-template-columns: 1fr;
+		text-align: center;
+		justify-items: center;
+	}
+	
+	.microsponsors #tix-attendees ul.tix-attendee-list .avatar {
+		grid-row: auto;
+		margin-bottom: 20px;
+	}
+	
+	.microsponsors #tix-attendees ul.tix-attendee-list > li > :not(.avatar) {
+		grid-column: 1;
+	}
+	
+	.microsponsors #tix-attendees ul.tix-attendee-list .tix-attendee-name {
+		align-items: center;
+	}
+}
+
+/* Microsponsors – name on one line */
+.microsponsors #tix-attendees ul.tix-attendee-list .tix-attendee-name {
+	display: block;
+}
+
+/* Microsponsors – avatar spans name, company and links */
+.microsponsors #tix-attendees ul.tix-attendee-list .avatar {
+	grid-row: 1 / span 4;
+}
+
+/* Company (custom question) under the name */
+#tix-attendees ul.tix-attendee-list .tix-company {
+	margin: 0 0 6px;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.4rem;
+	line-height: 1.1;
+	color: #0a0a0a;
+	overflow-wrap: anywhere;
+}
+
+#tix-attendees ul.tix-attendee-list .tix-company::before {
+	content: "» ";
+	color: #ee1841;
+}
+
+/* ==============================================
+   Schedule – "Level Select"
+   ============================================== */
+/* Date = World title, with blinking cursor */
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__date {
+	margin-bottom: 28px;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__date::before {
+	content: "WORLD 1 ▸ ";
+	color: #ee1841;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__date::after {
+	content: "_";
+	animation: wcmcr-blink 1s steps(1) infinite;
+}
+
+@keyframes wcmcr-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__day {
+	counter-reset: level;
+	background: transparent;
+}
+
+/* Time slot = level bar */
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__time-slot-header {
+	counter-increment: level;
+	display: block;
+	margin: 36px 0 0;
+	padding: 10px 16px;
+	text-align: left;
+	background: #0a0a0a;
+	color: #ffe86b;
+	border: 4px solid #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: 1rem;
+	letter-spacing: 1px;
+	box-shadow: 6px 6px 0 #0a0a0a;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__time-slot-header:first-of-type {
+	margin-top: 0;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__time-slot-header::before {
+	content: "LEVEL " counter(level, decimal-leading-zero) " ▸ ";
+	color: #faaa39;
+}
+
+/* Session = game card */
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session {
+	position: relative;
+	margin: 0;
+	padding: 22px 24px 20px;
+	background: #ffffff;
+	border: 4px solid #0a0a0a;
+	border-top: 0;
+	box-shadow: 6px 6px 0 #0a0a0a;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session-title {
+	margin: 0 0 10px;
+	padding-right: 150px;
+}
+
+/* Time */
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session > p {
+	margin: 0 0 12px;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.45rem;
+	line-height: 1.1;
+	color: #0a0a0a;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session > p::before {
+	content: "TIME ";
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .7rem;
+	color: #ee1841;
+	vertical-align: middle;
+}
+
+/* Rooms as pixel chips */
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session-tracks {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session-tracks::before {
+	content: "MAP ▸";
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .7rem;
+	color: #277b30;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session-tracks dd {
+	margin: 0;
+	padding: 3px 10px;
+	background: #faaa39;
+	color: #0a0a0a;
+	border: 2px solid #0a0a0a;
+	box-shadow: 2px 2px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .7rem;
+	text-transform: uppercase;
+}
+
+/* Chips replace the commas */
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session-tracks dd::after {
+	content: none;
+}
+
+/* Game-style tags on each session */
+.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session::before {
+	position: absolute;
+	top: 18px;
+	right: 18px;
+	padding: 4px 10px;
+	background: #0a0a0a;
+	color: #ffe86b;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .7rem;
+	letter-spacing: 1px;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .has-slug-registration-networking::before {
+	content: "INSERT COIN";
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .has-slug-opening-remarks::before {
+	content: "PRESS START";
+	background: #277b30;
+	color: #ffffff;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .has-slug-tba::before {
+	content: "SECRET LEVEL";
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .has-slug-session-planning::before {
+	content: "SELECT STAGE";
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .has-slug-lunch::before {
+	content: "★ POWER-UP";
+	background: #ee1841;
+	color: #ffffff;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule [class*="has-slug-discussion-session"]::before {
+	content: "MULTIPLAYER";
+	background: #faaa39;
+	color: #0a0a0a;
+}
+
+.wp-block-wordcamp-schedule .wordcamp-schedule .has-slug-closing-remarks::before {
+	content: "CONTINUE?";
+	background: #ee1841;
+	color: #ffffff;
+}
+
+/* Lunch gets a gold card */
+.wp-block-wordcamp-schedule .wordcamp-schedule .has-slug-lunch {
+	background: #ffe86b;
+}
+
+/* Phones: tag above the title instead of beside it */
+@media (max-width: 600px) {
+	.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session::before {
+		position: static;
+		display: inline-block;
+		margin-bottom: 10px;
+	}
+	
+	.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__session-title {
+		padding-right: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-wordcamp-schedule .wordcamp-schedule .wordcamp-schedule__date::after {
+		animation: none;
+	}
+}
+
+/* ==============================================
+   Global Sponsors – sponsor boxes (Sponsors page Query Loop)
+   ============================================== */
+.page-slug-sponsors .wp-block-query .wp-block-post-template {
+	gap: 40px 32px;
+	padding: 12px 10px 12px 0;
+}
+
+/* The box */
+.page-slug-sponsors .wp-block-query .wp-block-post-template > li {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin: 0;
+	padding: 52px 22px 24px;
+	background: #ffe86b;
+	border: 5px solid #0a0a0a;
+	box-shadow: 10px 10px 0 #0a0a0a;
+	transition: transform .15s steps(3), box-shadow .15s steps(3);
+}
+
+/* Badge */
+.page-slug-sponsors .wp-block-query .wp-block-post-template > li::before {
+	content: "★ Global Sponsor";
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	padding: 6px 12px;
+	background: #ee1841;
+	color: #ffffff;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	line-height: 1.2;
+	letter-spacing: 1px;
+}
+
+.page-slug-sponsors .wp-block-query .wp-block-post-template > li:hover,
+.page-slug-sponsors .wp-block-query .wp-block-post-template > li:focus-within {
+	transform: translate(-4px, -4px);
+	box-shadow: 14px 14px 0 #ee1841;
+}
+
+/* Logo on a white panel */
+.page-slug-sponsors .wp-block-query .wp-block-post-featured-image {
+	width: 100%;
+	margin: 0 0 18px;
+}
+
+.page-slug-sponsors .wp-block-query .wp-block-post-featured-image a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 130px;
+	padding: 18px;
+	box-sizing: border-box;
+	background: #ffffff;
+	border: 4px solid #0a0a0a;
+	box-shadow: 4px 4px 0 #faaa39;
+}
+
+.page-slug-sponsors .wp-block-query .wp-block-post-featured-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/* Sponsor name */
+.page-slug-sponsors .wp-block-query .wp-block-post-title {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: 1.3rem;
+	line-height: 1.2;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+}
+
+.page-slug-sponsors .wp-block-query .wp-block-post-title a {
+	color: #0a0a0a;
+	text-decoration: none;
+}
+
+/* Whole box links to the sponsor page */
+.page-slug-sponsors .wp-block-query .wp-block-post-title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+}
+
+/* View sponsor button */
+.page-slug-sponsors .wp-block-query .wp-block-read-more {
+	display: inline-block;
+	margin-top: 16px;
+	padding: 7px 14px;
+	background: #faaa39;
+	color: #0a0a0a;
+	border: 2px solid #0a0a0a;
+	box-shadow: 3px 3px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.3rem;
+	line-height: 1.1;
+	text-decoration: none;
+}
+
+.page-slug-sponsors .wp-block-query .wp-block-read-more::before {
+	content: "▶ ";
+}
+
+.page-slug-sponsors .wp-block-query .wp-block-post-template > li:hover .wp-block-read-more {
+	background: #ee1841;
+	color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-slug-sponsors .wp-block-query .wp-block-post-template > li {
+		transition: none;
+	}
+	
+	.page-slug-sponsors .wp-block-query .wp-block-post-template > li:hover,
+											.page-slug-sponsors .wp-block-query .wp-block-post-template > li:focus-within {
+		transform: none;
+	}
+}
+
+/* ==============================================
+   Sponsors page – intro dialogue box + Find out more button
+   ============================================== */
+/* Intro = RPG dialogue box */
+.page-slug-sponsors .entry-content > p:first-of-type {
+	position: relative;
+	margin: 0 0 20px;
+	padding: 34px 28px 30px;
+	background: #0a0a0a;
+	color: #ffffff;
+	border: 4px solid #0a0a0a;
+	box-shadow: inset 0 0 0 4px #0a0a0a, inset 0 0 0 7px #ffffff, 8px 8px 0 #ee1841;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.55rem;
+	line-height: 1.25;
+}
+
+/* Speaker tag */
+.page-slug-sponsors .entry-content > p:first-of-type::before {
+	content: "WCMCR ▸";
+	position: absolute;
+	top: -16px;
+	left: 18px;
+	padding: 4px 12px;
+	background: #ffe86b;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	line-height: 1.2;
+	letter-spacing: 1px;
+}
+
+/* "Press to continue" arrow */
+.page-slug-sponsors .entry-content > p:first-of-type::after {
+	content: "▼";
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	color: #ffe86b;
+	font-size: 1rem;
+	animation: wcmcr-bob .8s steps(2) infinite;
+}
+
+@keyframes wcmcr-bob {
+	50% {
+		transform: translateY(4px);
+	}
+}
+
+/* Find out more = arcade button */
+.page-slug-sponsors .entry-content > p:first-of-type + p {
+	margin: 0 0 8px;
+}
+
+.page-slug-sponsors .entry-content > p:first-of-type + p br {
+	display: none;
+}
+
+.page-slug-sponsors .entry-content > p:first-of-type + p a {
+	display: inline-block;
+	padding: 8px 16px;
+	background: #faaa39;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	box-shadow: 4px 4px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .9rem;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+
+.page-slug-sponsors .entry-content > p:first-of-type + p a::before {
+	content: "▶ ";
+}
+
+.page-slug-sponsors .entry-content > p:first-of-type + p a:hover,
+.page-slug-sponsors .entry-content > p:first-of-type + p a:focus-visible {
+	background: #ee1841;
+	color: #ffffff;
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0 #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-slug-sponsors .entry-content > p:first-of-type::after {
+		animation: none;
+	}
+	
+	.page-slug-sponsors .entry-content > p:first-of-type + p a {
+		transition: none;
+	}
+}
+
+/* ==============================================
+   Microsponsors page – intro dialogue box
+   ============================================== */
+.page-slug-microsponsors .entry-content > p:first-of-type {
+	position: relative;
+	margin: 0 0 44px;
+	padding: 34px 28px 30px;
+	background: #0a0a0a;
+	color: #ffffff;
+	border: 4px solid #0a0a0a;
+	box-shadow: inset 0 0 0 4px #0a0a0a, inset 0 0 0 7px #ffffff, 8px 8px 0 #ee1841;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.55rem;
+	line-height: 1.25;
+}
+
+.page-slug-microsponsors .entry-content > p:first-of-type::before {
+	content: "WCMCR ▸";
+	position: absolute;
+	top: -16px;
+	left: 18px;
+	padding: 4px 12px;
+	background: #ffe86b;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	line-height: 1.2;
+	letter-spacing: 1px;
+}
+
+.page-slug-microsponsors .entry-content > p:first-of-type::after {
+	content: "▼";
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	color: #ffe86b;
+	font-size: 1rem;
+	animation: wcmcr-bob .8s steps(2) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-slug-microsponsors .entry-content > p:first-of-type::after {
+		animation: none;
+	}
+}
+
+/* ==============================================
+   Microsponsors page – link button under the intro
+   (works whether the link is a paragraph or a list)
+   ============================================== */
+/* Tighten the gap when a link follows the intro */
+.page-slug-microsponsors .entry-content > p:first-of-type:has(+ p),
+.page-slug-microsponsors .entry-content > p:first-of-type:has(+ ul) {
+	margin-bottom: 20px;
+}
+
+.page-slug-microsponsors .entry-content > p:first-of-type + p,
+.page-slug-microsponsors .entry-content > p:first-of-type + ul {
+	margin: 0 0 44px;
+	padding: 0;
+	list-style: none;
+}
+
+.page-slug-microsponsors .entry-content > p:first-of-type + ul li {
+	margin: 0;
+}
+
+.page-slug-microsponsors .entry-content > p:first-of-type + p br {
+	display: none;
+}
+
+.page-slug-microsponsors .entry-content > p:first-of-type + p a,
+.page-slug-microsponsors .entry-content > p:first-of-type + ul a {
+	display: inline-block;
+	padding: 8px 16px;
+	background: #faaa39;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	box-shadow: 4px 4px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .9rem;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+
+.page-slug-microsponsors .entry-content > p:first-of-type + p a::before,
+.page-slug-microsponsors .entry-content > p:first-of-type + ul a::before {
+	content: "▶ ";
+}
+
+.page-slug-microsponsors .entry-content > p:first-of-type + p a:hover,
+.page-slug-microsponsors .entry-content > p:first-of-type + p a:focus-visible,
+.page-slug-microsponsors .entry-content > p:first-of-type + ul a:hover,
+.page-slug-microsponsors .entry-content > p:first-of-type + ul a:focus-visible {
+	background: #ee1841;
+	color: #ffffff;
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0 #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-slug-microsponsors .entry-content > p:first-of-type + p a,
+											.page-slug-microsponsors .entry-content > p:first-of-type + ul a {
+		transition: none;
+	}
+}
+
+/* ==============================================
+   Homepage – news feed (left) + side panels (right)
+   (blocks carry the wcmcr-* classes from the homepage code)
+   ============================================== */
+.wcmcr-home {
+	gap: 40px;
+	align-items: flex-start;
+}
+
+/* Section heading */
+.wcmcr-home .wcmcr-home__title {
+	margin: 0 0 24px;
+	font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.wcmcr-home .wcmcr-home__title::before {
+	content: "▶ ";
+	color: #ee1841;
+}
+
+/* ---------- News feed ---------- */
+.wcmcr-news .wp-block-post-template {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+	margin: 0;
+	padding: 0 8px 8px 0;
+	list-style: none;
+}
+
+.wcmcr-news .wp-block-post-template > li {
+	position: relative;
+	margin: 0;
+	padding: 22px 24px 24px;
+	background: #ffffff;
+	border: 4px solid #0a0a0a;
+	box-shadow: 6px 6px 0 #0a0a0a;
+	transition: transform .15s steps(3), box-shadow .15s steps(3);
+}
+
+.wcmcr-news .wp-block-post-template > li:hover,
+.wcmcr-news .wp-block-post-template > li:focus-within {
+	transform: translate(-3px, -3px);
+	box-shadow: 9px 9px 0 #ee1841;
+}
+
+/* Newest post gets a NEW! tag */
+.wcmcr-news .wp-block-post-template > li:first-child::before {
+	content: "★ NEW!";
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	padding: 4px 10px;
+	background: #ee1841;
+	color: #ffffff;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	letter-spacing: 1px;
+}
+
+.wcmcr-news .wp-block-post-date {
+	margin: 0 0 6px;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.3rem;
+	line-height: 1;
+	color: #ee1841;
+}
+
+.wcmcr-news .wp-block-post-date::before {
+	content: "DATE ▸ ";
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .7rem;
+	color: #277b30;
+	vertical-align: middle;
+}
+
+.wcmcr-news .wp-block-post-title {
+	margin: 0 0 12px;
+	font-size: 1.35rem;
+	line-height: 1.25;
+	color: #0a0a0a;
+}
+
+.wcmcr-news .wp-block-post-title a {
+	color: #0a0a0a;
+	text-decoration: none;
+}
+
+.wcmcr-news .wp-block-post-title a:hover,
+.wcmcr-news .wp-block-post-title a:focus-visible {
+	color: #ee1841;
+}
+
+.wcmcr-news .wp-block-post-excerpt {
+	margin: 0;
+	color: #0a0a0a;
+}
+
+.wcmcr-news .wp-block-post-excerpt__excerpt {
+	margin: 0 0 16px;
+}
+
+.wcmcr-news .wp-block-post-excerpt__more-text {
+	margin: 0;
+}
+
+/* Read more = arcade button */
+.wcmcr-news a.wp-block-post-excerpt__more-link,
+.wcmcr-home .wcmcr-btn .wp-block-button__link {
+	display: inline-block;
+	padding: 8px 16px;
+	background: #faaa39;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	border-radius: 0;
+	box-shadow: 4px 4px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .85rem;
+	line-height: 1.3;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+
+.wcmcr-news a.wp-block-post-excerpt__more-link::before,
+.wcmcr-home .wcmcr-btn .wp-block-button__link::before {
+	content: "▶ ";
+}
+
+.wcmcr-news a.wp-block-post-excerpt__more-link:hover,
+.wcmcr-news a.wp-block-post-excerpt__more-link:focus-visible,
+.wcmcr-home .wcmcr-btn .wp-block-button__link:hover,
+.wcmcr-home .wcmcr-btn .wp-block-button__link:focus-visible {
+	background: #ee1841;
+	color: #ffffff;
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0 #0a0a0a;
+}
+
+/* ---------- Side panels ---------- */
+.wcmcr-home__side {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.wcmcr-home .wcmcr-panel {
+	margin: 0;
+	padding: 0 20px 22px;
+	background: #ffffff;
+	color: #0a0a0a;
+	border: 4px solid #0a0a0a;
+	box-shadow: 6px 6px 0 #0a0a0a;
+}
+
+/* Black title bar across the top of each panel */
+.wcmcr-home .wcmcr-panel .wcmcr-panel__title {
+	margin: 0 -20px 18px;
+	padding: 10px 16px;
+	background: #0a0a0a;
+	color: #ffe86b !important;
+/* beats a text colour set in the editor */
+	font-size: .95rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.wcmcr-home .wcmcr-panel .wcmcr-panel__title::before {
+	content: "▸ ";
+	color: #faaa39;
+}
+
+.wcmcr-home .wcmcr-panel p {
+	margin: 0 0 14px;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+.wcmcr-home .wcmcr-panel .wp-block-buttons {
+	margin-top: 18px;
+}
+
+/* Location panel – address in terminal font */
+.wcmcr-home .wcmcr-panel--location p:first-of-type {
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.35rem;
+	line-height: 1.2;
+}
+
+.wcmcr-home .wcmcr-panel--location {
+	background: #ffe86b;
+}
+
+/* Level Select menu */
+.wcmcr-home .wcmcr-menu {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: menu;
+}
+
+.wcmcr-home .wcmcr-menu li {
+	margin: 0;
+	counter-increment: menu;
+}
+
+.wcmcr-home .wcmcr-menu a {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 12px;
+	background: #fff8d6;
+	color: #0a0a0a;
+	border: 2px solid #0a0a0a;
+	box-shadow: 3px 3px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .85rem;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+
+/* 1-01, 1-02… like stage numbers */
+.wcmcr-home .wcmcr-menu a::before {
+	content: "1-" counter(menu, decimal-leading-zero);
+	padding: 2px 6px;
+	background: #0a0a0a;
+	color: #ffe86b;
+	font-size: .7rem;
+}
+
+.wcmcr-home .wcmcr-menu a::after {
+	content: "▶";
+	margin-left: auto;
+	color: #ee1841;
+}
+
+.wcmcr-home .wcmcr-menu a:hover,
+.wcmcr-home .wcmcr-menu a:focus-visible {
+	background: #ee1841;
+	color: #ffffff;
+	transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 #0a0a0a;
+}
+
+.wcmcr-home .wcmcr-menu a:hover::after,
+.wcmcr-home .wcmcr-menu a:focus-visible::after {
+	color: #ffe86b;
+}
+
+/* Phones/tablets: key links first, then the news */
+@media (max-width: 781px) {
+	.wcmcr-home .wcmcr-home__side {
+		order: -1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wcmcr-news .wp-block-post-template > li,
+											.wcmcr-news a.wp-block-post-excerpt__more-link,
+											.wcmcr-home .wcmcr-btn .wp-block-button__link,
+											.wcmcr-home .wcmcr-menu a {
+		transition: none;
+	}
+	
+	.wcmcr-news .wp-block-post-template > li:hover,
+											.wcmcr-news .wp-block-post-template > li:focus-within,
+											.wcmcr-news a.wp-block-post-excerpt__more-link:hover,
+											.wcmcr-home .wcmcr-btn .wp-block-button__link:hover,
+											.wcmcr-home .wcmcr-menu a:hover {
+		transform: none;
+	}
+}
+
+/* ==============================================
+   Contact form (Jetpack) – arcade "New message" panel
+   ============================================== */
+.page-slug-contact .jetpack-contact-form__form {
+	position: relative;
+	padding: 64px 26px 28px;
+	background: #ffffff;
+	border: 4px solid #0a0a0a;
+	box-shadow: 8px 8px 0 #0a0a0a;
+}
+
+.page-slug-contact .jetpack-contact-form__form::before {
+	content: "▸ NEW MESSAGE";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 10px 16px;
+	background: #0a0a0a;
+	color: #ffe86b;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .9rem;
+	letter-spacing: 1px;
+}
+
+/* Field styles apply to every Jetpack form on the site */
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .grunion-field-label {
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .85rem;
+	font-weight: 400;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	color: #0a0a0a;
+}
+
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .grunion-field-label::before {
+	content: "▸ ";
+	color: #ee1841;
+}
+
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .grunion-label-required {
+	margin-left: 6px;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.1rem;
+	text-transform: none;
+	color: #ee1841;
+}
+
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .grunion-field {
+	padding: 10px 12px;
+	background: #fff8d6;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	border-radius: 0;
+	box-shadow: inset 3px 3px 0 rgba(10, 10, 10, .12);
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.4rem;
+	line-height: 1.2;
+}
+
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .grunion-field:focus {
+	outline: none;
+	background: #ffe86b;
+	box-shadow: 4px 4px 0 #ee1841;
+}
+
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .wp-block-jetpack-button .wp-block-button__link {
+	padding: 10px 20px;
+	background: #faaa39;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	border-radius: 0;
+	box-shadow: 4px 4px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .95rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .wp-block-jetpack-button .wp-block-button__link::before {
+	content: "▶ ";
+}
+
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .wp-block-jetpack-button .wp-block-button__link:hover,
+.jetpack-contact-form-container .wp-block-jetpack-contact-form .wp-block-jetpack-button .wp-block-button__link:focus-visible {
+	background: #ee1841;
+	color: #ffffff;
+	transform: translate(2px, 2px);
+	box-shadow: 2px 2px 0 #0a0a0a;
+}
+
+/* ==============================================
+   Accommodation page – hint boxes + "Bonus Stage" discount
+   ============================================== */
+.page-slug-accommodation .entry-content > h2.wp-block-heading::before {
+	content: "▶ ";
+	color: #ee1841;
+}
+
+/* Paragraphs that start with bold text (One tip:, City Tax:) become hint boxes */
+.page-slug-accommodation .entry-content > p:has(> strong:first-child) {
+	padding: 14px 18px;
+	background: #ffffff;
+	border: 3px solid #0a0a0a;
+	box-shadow: 4px 4px 0 #0a0a0a;
+}
+
+.page-slug-accommodation .entry-content > p > strong:first-child {
+	display: inline-block;
+	margin-right: 8px;
+	padding: 2px 8px;
+	background: #0a0a0a;
+	color: #ffe86b;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	font-weight: 400;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+}
+
+/* Second heading (Venue discount rate) and everything after it = Bonus Stage box */
+.page-slug-accommodation .entry-content > h2:nth-of-type(2) {
+	position: relative;
+	margin-top: 56px;
+	margin-bottom: 0;
+	padding: 14px 20px;
+	background: #0a0a0a;
+	color: #ffe86b !important;
+	border: 4px solid #0a0a0a;
+	box-shadow: 8px 0 0 #0a0a0a;
+	font-size: clamp(1.2rem, 3vw, 1.6rem);
+}
+
+.page-slug-accommodation .entry-content > h2:nth-of-type(2)::before {
+	content: "★ ";
+	color: #ee1841;
+}
+
+.page-slug-accommodation .entry-content > h2:nth-of-type(2)::after {
+	content: "BONUS STAGE";
+	position: absolute;
+	top: -14px;
+	right: 16px;
+	padding: 4px 10px;
+	background: #ee1841;
+	color: #ffffff;
+	font-size: .7rem;
+	letter-spacing: 1px;
+}
+
+.page-slug-accommodation .entry-content > h2:nth-of-type(2) ~ p {
+	margin-block: 0;
+	padding: 0 24px 14px;
+	background: #ffe86b;
+	border-left: 4px solid #0a0a0a;
+	border-right: 4px solid #0a0a0a;
+	box-shadow: 8px 0 0 #0a0a0a;
+}
+
+.page-slug-accommodation .entry-content > h2:nth-of-type(2) + p {
+	padding-top: 22px;
+}
+
+.page-slug-accommodation .entry-content > h2:nth-of-type(2) ~ p + p {
+	margin-block-start: -1px;
+/* hides a hairline between the paragraphs */
+}
+
+.page-slug-accommodation .entry-content > h2:nth-of-type(2) ~ p:last-of-type {
+	margin-block-end: 24px;
+	padding-bottom: 24px;
+	border-bottom: 4px solid #0a0a0a;
+	box-shadow: 8px 8px 0 #0a0a0a;
+}
+
+.page-slug-accommodation .entry-content > h2:nth-of-type(2) ~ p a {
+	color: #0a0a0a;
+	font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.jetpack-contact-form-container .wp-block-jetpack-contact-form .wp-block-jetpack-button .wp-block-button__link {
+		transition: none;
+	}
+}
+
+/* ==============================================
+   Homepage – hide the page title (still read by screen readers)
+   and pull the content box up under the menu
+   ============================================== */
+.home main .wp-block-group:has(> .wp-block-post-title) > .wp-block-post-title {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	margin: 0;
+	padding: 0 !important;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.home main .wp-block-group:has(> .wp-block-post-title) > .wp-block-spacer {
+	display: none;
+}
+
+.home main .wp-block-group:has(> .wp-block-post-title) + .wp-block-group {
+	margin-top: 0;
+	padding-top: var(--wp--preset--spacing--30) !important;
+}
+
+/* ==============================================
+   Single posts – "News terminal"
+   ============================================== */
+/* Meta line (date · author · category) as pixel chips */
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-group.is-layout-flex {
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+/* Hide the "—" and "by" separator text */
+.single-post h1.wp-block-post-title + .wp-block-template-part .is-layout-flex > p {
+	display: none;
+}
+
+.single-post .wp-block-post-terms__prefix {
+	display: none;
+}
+
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-date,
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-author-name,
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-terms {
+	margin: 0;
+	padding: 5px 12px;
+	border: 3px solid #0a0a0a;
+	box-shadow: 3px 3px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .8rem;
+	line-height: 1.3;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+}
+
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-date {
+	background: #0a0a0a;
+	color: #ffe86b;
+}
+
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-author-name {
+	background: #faaa39;
+	color: #0a0a0a;
+}
+
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-terms {
+	background: #ee1841;
+	color: #ffffff;
+}
+
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-date::before {
+	content: "DATE ▸ ";
+	color: #faaa39;
+}
+
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-author-name::before {
+	content: "PLAYER ▸ ";
+}
+
+.single-post h1.wp-block-post-title + .wp-block-template-part .wp-block-post-terms::before {
+	content: "WORLD ▸ ";
+}
+
+.single-post h1.wp-block-post-title + .wp-block-template-part a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Breathing room at the top of the content box */
+.single-post .entry-content {
+	padding-top: 36px;
+}
+
+/* Opening paragraph = RPG dialogue box */
+.single-post .entry-content > p:first-child {
+	position: relative;
+	margin: 0 0 32px;
+	padding: 30px 28px 26px;
+	background: #0a0a0a;
+	color: #ffffff;
+	border: 4px solid #0a0a0a;
+	box-shadow: inset 0 0 0 4px #0a0a0a, inset 0 0 0 7px #ffffff, 8px 8px 0 #ee1841;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.55rem;
+	line-height: 1.25;
+}
+
+.single-post .entry-content > p:first-child::before {
+	content: "NEWS ▸";
+	position: absolute;
+	top: -16px;
+	left: 18px;
+	padding: 4px 12px;
+	background: #ffe86b;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	line-height: 1.2;
+	letter-spacing: 1px;
+}
+
+.single-post .entry-content > p:first-child a {
+	color: #ffe86b;
+}
+
+/* Headings */
+.single-post .entry-content > h2::before,
+.single-post .entry-content > h3::before {
+	content: "▶ ";
+	color: #ee1841;
+	font-size: .7em;
+	vertical-align: .1em;
+}
+
+/* Links */
+.single-post .entry-content a {
+	text-decoration-color: #ee1841;
+	text-decoration-thickness: 3px;
+	text-underline-offset: 3px;
+}
+
+.single-post .entry-content a:hover {
+	background: #ffe86b;
+}
+
+/* Numbered lists = stage list */
+.single-post .entry-content > ol {
+	counter-reset: stage;
+	list-style: none;
+	padding-left: 0;
+}
+
+.single-post .entry-content > ol > li {
+	counter-increment: stage;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 0 0 10px;
+	padding: 8px 12px;
+	background: #ffffff;
+	border: 3px solid #0a0a0a;
+	box-shadow: 3px 3px 0 #0a0a0a;
+}
+
+.single-post .entry-content > ol > li::before {
+	content: counter(stage, decimal-leading-zero);
+	flex: none;
+	padding: 2px 7px;
+	background: #0a0a0a;
+	color: #ffe86b;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+}
+
+/* Bullet lists = pixel squares */
+.single-post .entry-content > ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.single-post .entry-content > ul > li {
+	position: relative;
+	padding-left: 24px;
+}
+
+.single-post .entry-content > ul > li::before {
+	content: "";
+	position: absolute;
+	left: 4px;
+	top: .55em;
+	width: 9px;
+	height: 9px;
+	background: #ee1841;
+}
+
+/* Quotes */
+.single-post .entry-content > blockquote {
+	margin: 32px 0;
+	padding: 20px 24px;
+	background: #ffe86b;
+	border: 4px solid #0a0a0a;
+	box-shadow: 6px 6px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.5rem;
+}
+
+/* Previous / next post = arcade buttons */
+.single-post .wp-block-post-navigation-link a {
+	display: inline-block;
+	padding: 8px 16px;
+	background: #faaa39;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	box-shadow: 4px 4px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .8rem;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.single-post .post-navigation-link-previous a::before {
+	content: "◀ PREV LEVEL: ";
+}
+
+.single-post .post-navigation-link-next a::after {
+	content: " :NEXT LEVEL ▶";
+}
+
+.single-post .wp-block-post-navigation-link a:hover,
+.single-post .wp-block-post-navigation-link a:focus-visible {
+	background: #ee1841;
+	color: #ffffff;
+}
+
+/* ==============================================
+   Organisers page – "Player profiles"
+   ============================================== */
+.page-slug-organisers .wp-block-query .wp-block-post-template {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	margin: 0;
+	padding: 8px 10px 10px 0;
+	list-style: none;
+	counter-reset: organiser;
+}
+
+/* Each organiser = a player card */
+.page-slug-organisers .wp-block-query .wp-block-post-template > li {
+	position: relative;
+	margin: 0;
+	padding: 44px 28px 28px;
+	background: #ffffff;
+	border: 4px solid #0a0a0a;
+	box-shadow: 8px 8px 0 #0a0a0a;
+	counter-increment: organiser;
+}
+
+/* P1, P2… badge */
+.page-slug-organisers .wp-block-query .wp-block-post-template > li::before {
+	content: "P" counter(organiser) " ▸ ORGANISER";
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	padding: 5px 12px;
+	background: #0a0a0a;
+	color: #ffe86b;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	letter-spacing: 1px;
+}
+
+/* Lives */
+.page-slug-organisers .wp-block-query .wp-block-post-template > li::after {
+	content: "♥♥♥";
+	position: absolute;
+	top: 8px;
+	right: 14px;
+	color: #ee1841;
+	font-size: 1rem;
+	letter-spacing: 2px;
+	line-height: 1;
+}
+
+/* Drop the old spacers and divider lines */
+.page-slug-organisers .wp-block-query .wp-block-post-template > li > .wp-block-spacer,
+.page-slug-organisers .wp-block-query .wp-block-post-template > li > .wp-block-separator,
+.page-slug-organisers .wp-block-query .wp-block-post-template > li .wp-block-column > .wp-block-spacer {
+	display: none;
+}
+
+.page-slug-organisers .wp-block-query .wp-block-post-template > li > .wp-block-columns {
+	margin: 0;
+	gap: 28px;
+	align-items: flex-start;
+}
+
+.page-slug-organisers .wp-block-query .wp-block-post-template > li .wp-block-column:first-child {
+	flex: 0 0 140px !important;
+}
+
+/* Square pixel-frame avatar */
+.page-slug-organisers .wp-block-wordcamp-avatar {
+	width: auto !important;
+/* the block sets a fixed 96px size inline */
+	height: auto !important;
+	margin: 0;
+}
+
+.page-slug-organisers .wp-block-wordcamp-avatar img {
+	display: block;
+	width: 128px;
+	height: 128px;
+	border-radius: 0 !important;
+	border: 4px solid #0a0a0a;
+	background: #ffe86b;
+	box-shadow: 5px 5px 0 #faaa39;
+	object-fit: cover;
+}
+
+/* Name */
+.page-slug-organisers .wp-block-post-template .wp-block-post-title {
+	margin: 0 0 12px;
+	color: #0a0a0a;
+	font-size: clamp(1.4rem, 3vw, 1.8rem);
+	line-height: 1.2;
+}
+
+/* Bio */
+.page-slug-organisers .wp-block-post-template .wp-block-post-content {
+	color: #0a0a0a;
+}
+
+.page-slug-organisers .wp-block-post-template .wp-block-post-content p {
+	margin: 0 0 12px;
+}
+
+.page-slug-organisers .wp-block-post-template .wp-block-post-content a {
+	color: #0a0a0a;
+	text-decoration-color: #ee1841;
+	text-decoration-thickness: 3px;
+	text-underline-offset: 3px;
+}
+
+.page-slug-organisers .wp-block-post-template .wp-block-post-content a:hover {
+	background: #ffe86b;
+}
+
+/* Phones: avatar above the name */
+@media (max-width: 781px) {
+	.page-slug-organisers .wp-block-query .wp-block-post-template > li .wp-block-column:first-child {
+		flex-basis: auto !important;
+	}
+}
+
+/* Pinned post on the homepage */
+.wcmcr-news--pinned {
+	margin-bottom: 28px;
+}
+
+.wcmcr-news--pinned .wp-block-post-template > li {
+	background: #ffe86b;
+}
+
+.wcmcr-news.wcmcr-news--pinned .wp-block-post-template > li:first-child::before {
+	content: "★ HI-SCORE";
+	background: #0a0a0a;
+	color: #ffe86b;
+}
+
+.wcmcr-volunteers {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	padding: 8px 10px 10px 0;
+	counter-reset: volunteer;
+}
+
+.wcmcr-volunteers > .wcmcr-volunteer {
+	position: relative;
+	margin: 0;
+	padding: 44px 28px 28px;
+	background: #ffffff;
+	color: #0a0a0a;
+	border: 4px solid #0a0a0a;
+	box-shadow: 8px 8px 0 #0a0a0a;
+	counter-increment: volunteer;
+}
+
+/* V1, V2… badge */
+.wcmcr-volunteers > .wcmcr-volunteer::before {
+	content: "V" counter(volunteer) " ▸ VOLUNTEER";
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	padding: 5px 12px;
+	background: #277b30;
+	color: #ffffff;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	letter-spacing: 1px;
+}
+
+/* Lives */
+.wcmcr-volunteers > .wcmcr-volunteer::after {
+	content: "♥♥♥";
+	position: absolute;
+	top: 8px;
+	right: 14px;
+	color: #ee1841;
+	font-size: 1rem;
+	letter-spacing: 2px;
+	line-height: 1;
+}
+
+.wcmcr-volunteer > .wp-block-columns {
+	margin: 0;
+	gap: 28px;
+	align-items: flex-start;
+}
+
+/* Square pixel-frame photo */
+.wcmcr-volunteer .wcmcr-volunteer__photo {
+	margin: 0;
+}
+
+.wcmcr-volunteer .wcmcr-volunteer__photo img {
+	display: block;
+	width: 128px;
+	height: 128px;
+	border: 4px solid #0a0a0a;
+	border-radius: 0;
+	background: #ffe86b;
+	box-shadow: 5px 5px 0 #faaa39;
+	object-fit: cover;
+}
+
+/* Name */
+.wcmcr-volunteer .wcmcr-volunteer__name {
+	margin: 0 0 12px;
+	color: #0a0a0a;
+	font-size: clamp(1.4rem, 3vw, 1.8rem);
+	line-height: 1.2;
+}
+
+/* Bio */
+.wcmcr-volunteer p {
+	margin: 0 0 12px;
+	color: #0a0a0a;
+}
+
+.wcmcr-volunteer a {
+	color: #0a0a0a;
+	text-decoration-color: #ee1841;
+	text-decoration-thickness: 3px;
+	text-underline-offset: 3px;
+}
+
+.wcmcr-volunteer a:hover {
+	background: #ffe86b;
+}
+
+/* WordPress.org profile link button (organisers + volunteers) */
+.page-slug-organisers .wp-block-post-template .wp-block-post-content .wcmcr-profile-link,
+.wcmcr-volunteer .wcmcr-profile-link {
+	margin: 18px 0 0;
+}
+
+.page-slug-organisers .wp-block-post-template .wp-block-post-content .wcmcr-profile-link a,
+.wcmcr-volunteer .wcmcr-profile-link a {
+	display: inline-block;
+	padding: 6px 12px;
+	background: #277b30;
+	color: #ffffff;
+	border: 2px solid #0a0a0a;
+	box-shadow: 3px 3px 0 #0a0a0a;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.25rem;
+	line-height: 1.1;
+	text-decoration: none;
+	transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+
+.page-slug-organisers .wp-block-post-template .wp-block-post-content .wcmcr-profile-link a::before,
+.wcmcr-volunteer .wcmcr-profile-link a::before {
+	content: "▶ W.ORG ";
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .7rem;
+}
+
+.page-slug-organisers .wp-block-post-template .wp-block-post-content .wcmcr-profile-link a:hover,
+.page-slug-organisers .wp-block-post-template .wp-block-post-content .wcmcr-profile-link a:focus-visible,
+.wcmcr-volunteer .wcmcr-profile-link a:hover,
+.wcmcr-volunteer .wcmcr-profile-link a:focus-visible {
+	background: #ee1841;
+	color: #ffffff;
+	transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 #0a0a0a;
+}
+
+/* ==============================================
+   Attendees page – intro dialogue box
+   ============================================== */
+.page-slug-attendees .entry-content > p:first-of-type {
+	position: relative;
+	margin: 0 0 44px;
+	padding: 34px 28px 30px;
+	background: #0a0a0a;
+	color: #ffffff;
+	border: 4px solid #0a0a0a;
+	box-shadow: inset 0 0 0 4px #0a0a0a, inset 0 0 0 7px #ffffff, 8px 8px 0 #ee1841;
+	font-family: var(--wp--preset--font-family--vt-323);
+	font-size: 1.45rem;
+	line-height: 1.25;
+}
+
+.page-slug-attendees .entry-content > p:first-of-type::before {
+	content: "WCMCR ▸";
+	position: absolute;
+	top: -16px;
+	left: 18px;
+	padding: 4px 12px;
+	background: #ffe86b;
+	color: #0a0a0a;
+	border: 3px solid #0a0a0a;
+	font-family: var(--wp--preset--font-family--silkscreen);
+	font-size: .75rem;
+	line-height: 1.2;
+	letter-spacing: 1px;
+}
+
+.page-slug-attendees .entry-content > p:first-of-type::after {
+	content: "▼";
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	color: #ffe86b;
+	font-size: 1rem;
+	animation: wcmcr-bob .8s steps(2) infinite;
+}
+
+.page-slug-attendees .entry-content > p:first-of-type strong {
+	color: #ffe86b;
+	font-weight: 400;
+}
+
+.page-slug-attendees .entry-content > p:first-of-type a {
+	color: #faaa39;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-slug-attendees .entry-content > p:first-of-type::after {
+		animation: none;
+	}
+}
+
+.page-slug-attendees .entry-content > h3 + p:first-of-type {
+	margin-top: 32px;
+}
+
+/* Social icons */
+.wp-block-navigation .wp-block-social-links {
+	gap: 10px;
+	margin: 0 0 0 8px;
+	padding: 0;
+}
+
+.wp-block-navigation .wp-block-social-links .wp-social-link {
+	margin: 0;
+	background: #0a0a0a !important;
+	color: #ffe86b !important;
+	border-radius: 0 !important;
+	box-shadow: 3px 3px 0 #ee1841;
+	transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+
+.wp-block-navigation .wp-block-social-links .wp-social-link a {
+	padding: 7px;
+}
+
+.wp-block-navigation .wp-block-social-links .wp-social-link svg {
+	width: 18px;
+	height: 18px;
+	fill: currentColor;
+}
+
+.wp-block-navigation .wp-block-social-links .wp-social-link:hover,
+.wp-block-navigation .wp-block-social-links .wp-social-link:focus-within {
+	background: #ee1841 !important;
+	color: #ffffff !important;
+	transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-navigation .wp-block-social-links .wp-social-link {
+		transition: none;
+	}
+}
+
+main > .wp-block-cover.alignfull {
+	padding-top: 48px !important;
+	padding-bottom: 56px !important;
+	min-height: 0 !important;
+}
+
+main > .wp-block-cover.alignfull .wp-block-cover__inner-container > * {
+	margin-block-start: .8rem;
+}
+
+main > .wp-block-cover.alignfull .wp-block-cover__inner-container > *:first-child {
+	margin-block-start: 0;
+}
+
+main > .wp-block-cover.alignfull .wp-block-image img[src*="hive"] {
+	width: 100px !important;
+}
+
+main > .wp-block-cover.alignfull .wp-block-image img[src*="bee-drift"] {
+	width: 48px !important;
+}
+
+main > .wp-block-cover.alignfull h1.wp-block-heading {
+	font-size: clamp(2.1rem, 2rem + 1.8vw, 3rem);
+}
+
+/* 2026 as a compact badge rather than a full-width bar */
+main > .wp-block-cover.alignfull p.has-background {
+	width: fit-content;
+	margin-inline: auto;
+	padding: 4px 22px !important;
+	font-size: 24px !important;
+}
+
+main > .wp-block-cover.alignfull h2.wp-block-heading {
+	font-size: 18px !important;
+}
